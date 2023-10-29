@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Log In</title>
+    <title>Profile</title>
     <div th:insert="~{partials :: header}"></div>
     <div th:insert="~{partials :: css}"></div>
 </head>
 <body>
 <nav th:insert="~{partials :: navbar}"></nav>
-<form th:action="@{/createUser}" th:method="post" th:object="${user}">
-    Name<input type="text" id="name"  th:field="*{name}">
-    Username<input type="text" id="username" name="named">
-    Age<input type="text" id="age" th:field="*{age}">
-<!--    Address<input type="text" id="address" th:field="*{address}">-->
-    Password<input type="text" id="password" th:field="*{pw}">
-    <input type="submit" value="Register">
-</form>
+<div class="card divCardEachProfile bg-light" th:each="search : ${user}">
+    Name:
+    <div th:text="${search.getName()}"></div>
+    Age:
+    <div th:text="${search.getAge()}"></div>
+    Password:
+    <div th:text="${search.getPw()}"></div>
+</div>
 <!--<footer th:replace="~{partials :: footer}"></footer>-->
 </body>
 </html>

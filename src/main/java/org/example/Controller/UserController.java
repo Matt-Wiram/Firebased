@@ -1,5 +1,7 @@
 package org.example.Controller;
 
+import jakarta.servlet.http.HttpSession;
+import org.apache.http.protocol.HTTP;
 import org.example.Bean.User;
 import org.example.Service.UserService;
 import org.springframework.stereotype.Controller;
@@ -20,8 +22,18 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/getUserDetails")
-    public User getUser(@RequestParam String name ) throws InterruptedException, ExecutionException{
-        return userService.getUserDetails(name);
+    public ModelAndView getUser(@RequestParam String name, HttpSession session, @RequestParam("password") String pw) throws InterruptedException, ExecutionException{
+        System.out.println(pw);
+
+        User user = userService.getUserDetails(name);
+        if (user.getPw().equals(pw)) {
+            session.setAttribute("user", user);
+            session.setAttribute("name", name);
+            return new ModelAndView("redirect:/profile");
+        }
+       else {
+           return new ModelAndView("redirect:/login");
+        }
     }
     @GetMapping("/createUser")
     public String create(Model model, @RequestParam("named") String name) {
@@ -36,8 +48,14 @@ public class UserController {
     }
 
     @PostMapping("/updateUser")
-    public ModelAndView updatePatient( User user, @RequestParam("named") String name  ) throws InterruptedException, ExecutionException {
-        userService.updateUserDetails(user, name);
+    public ModelAndView updatePatient( User user, @RequestParam("named") String name, HttpSession session  ) throws InterruptedException, ExecutionException {
+        if (session.getAttribute("name").equals(name)) {
+            userService.updateUserDetails(user, name);
+        }
+        else {
+            userService.deleteUser((String) session.getAttribute("name"));
+            userService.updateUserDetails(user, name);
+        }
         return new ModelAndView("redirect:/login");
     }
 

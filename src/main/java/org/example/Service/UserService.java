@@ -33,7 +33,10 @@ public class UserService {
         User user = new User();
 
         if(document.exists()) {
-            System.out.println(user.getAge());
+            System.out.println(document.getId());
+            if (document.getId().equals(name)) {
+
+            }
             user = document.toObject(User.class);
             user.setAge(Integer.parseInt(Objects.requireNonNull(document.get("age")).toString()));
             user.setName(Objects.requireNonNull(document.get("name")).toString());
