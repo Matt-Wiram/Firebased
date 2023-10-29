@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Delete</title>
+    <div th:insert="~{partials :: header}"></div>
 </head>
 <body>
+<nav th:insert="~{partials :: navbar}"></nav>
 <form th:action="@{/deleteUser}" th:method="post">
     Username<input type="text" name="name">
 

@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Log In</title>
-<!--    <div th:insert="~{partials :: header}"></div>-->
+    <div th:insert="~{partials :: header}"></div>
+
 </head>
 <body>
-<!--<nav th:insert="~{partials :: navbar}"></nav>-->
+<nav th:insert="~{partials :: navbar}"></nav>
 <form th:action="@{/createUser}" th:method="post" th:object="${user}">
     Name<input type="text" id="name"  th:field="*{name}">
     Username<input type="text" id="username" name="named">

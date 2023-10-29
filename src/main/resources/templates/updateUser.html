@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Update User</title>
+    <div th:insert="~{partials :: header}"></div>
 </head>
+<body>
+<nav th:insert="~{partials :: navbar}"></nav>
+
 <body>
 <form th:action="@{/updateUser}" th:method="post" th:object="${user}">
   Name<input type="text" id="name"  th:field="*{name}">
