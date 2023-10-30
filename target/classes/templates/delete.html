@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+    <div th:insert="~{partials :: header}"></div>
+    <div th:insert="~{partials :: css}"></div>
+</head>
+<body>
+<nav th:insert="~{partials :: navbar}"></nav>
+<form th:action="@{/deleteUser}" th:method="post">
+    Username<input type="text" name="name">
+
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Log In</title>
+    <div th:insert="~{partials :: header}"></div>
+    <div th:insert="~{partials :: css}"></div>
+</head>
+<body>
+<nav th:insert="~{partials :: navbar}"></nav>
+<form th:action="@{/createUser}" th:method="post" th:object="${user}">
+    Name<input type="text" id="name"  th:field="*{name}">
+    Username<input type="text" id="username" name="named">
+    Age<input type="text" id="age" th:field="*{age}">
+<!--    Address<input type="text" id="address" th:field="*{address}">-->
+    Password<input type="text" id="password" th:field="*{pw}">
+    <input type="submit" value="Register">
+</form>
+<!--<footer th:replace="~{partials :: footer}"></footer>-->
+</body>
+</html>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
