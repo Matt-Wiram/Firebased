@@ -153,27 +153,36 @@ var map = new mapboxgl.Map({
 
 let coords = [80, 33]
 
-    getLocation()
+getLocation()
 
+var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+};
+
+function error() {
+    console.log("Geolocation is not supported by this browser.");
+}
 
 async function getLocation() {
     if (navigator.geolocation) {
 
-        navigator.geolocation.getCurrentPosition(showPosition)
+        navigator.geolocation.getCurrentPosition(showPosition, error, options)
     } else {
         console.log("Geolocation is not supported by this browser.");
     }
 }
 
 function showPosition(position) {
-    console.log(position.coords);
+
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     let mapArr = []
     mapArr.push(lon);
     mapArr.push(lat)
 
-    // map.flyTo({center: [lon, lat]})
+    map.flyTo({center: [lon, lat]})
 
     coords = mapArr;
     getRoute(coords)
