@@ -1,5 +1,7 @@
 package org.example.Controller;
 
+
+
 import jakarta.servlet.http.HttpSession;
 import org.apache.http.protocol.HTTP;
 import org.example.Bean.User;
@@ -53,7 +55,7 @@ public class UserController {
             userService.updateUserDetails(user, name);
         }
         else {
-            userService.deleteUser((String) session.getAttribute("name"));
+            userService.deleteUser((String)session.getAttribute("name"));
             userService.updateUserDetails(user, name);
         }
         return new ModelAndView("redirect:/login");
