@@ -72,4 +72,9 @@ public class UsersController {
         model.addAttribute(user);
         return "profile";
     }
+
+    @GetMapping("/mapper")
+    public String mapper() {
+        return "mapper";
+    }
 }
