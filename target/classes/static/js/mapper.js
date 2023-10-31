@@ -6,7 +6,7 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     zoom: 20,
-    center: [-80.175652, 33.018505]
+    center: [-79.93562,32.78531]
 
 });
 // const geocoder = new MapboxGeocoder({
@@ -151,7 +151,7 @@ var map = new mapboxgl.Map({
 
 
 
-let coords = [80, 33]
+let coords = [-79.93562, 32.78531]
 
 getLocation()
 
@@ -195,7 +195,7 @@ function showPosition(position) {
     //     "<br>Longitude: " + position.coords.longitude;
 }
 
-let start = [-80.175652, 33.018505]
+let start = [-79.93562, 32.78531]
 // Start of directions testing
 // create a function to make a directions request
 async function getRoute(end) {
