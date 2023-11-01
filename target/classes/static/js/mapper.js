@@ -9,145 +9,6 @@ var map = new mapboxgl.Map({
     center: [-79.93562, 32.78531]
 
 });
-// const geocoder = new MapboxGeocoder({
-//     // Initialize the geocoder
-//     accessToken: mapboxgl.accessToken, // Set the access token
-//     mapboxgl: mapboxgl, // Set the mapbox-gl instance
-//     marker: true // Do not use the default marker style
-// });
-// geocoder.on('result', function(e) {
-//     //
-//     // let word = e.result.place_name
-//     // findLoc(e.result.center, word)
-// })
-// map.addControl(geocoder);
-//
-// //    start of click marker
-//
-// let marker = new mapboxgl.Marker({
-//     draggable: true
-// })
-// // Drag Marker
-// marker.on('dragend',function(e){
-//     var lngLat = e.target.getLngLat();
-//     addMarker(lngLat)
-// })
-// // .setLngLat(feature.geometry.coordinates)
-// map.on('click', function (e) {
-//
-//     getLocation()
-//     addMarker(e.lngLat)
-// })
-//
-// // Add Marker Here
-// function addMarker(event) {
-//
-//
-//     marker.setLngLat(event).addTo(map);
-// }
-//
-// // Add automatic geolocation finder
-//
-// function getLocation() {
-//     if (navigator.geolocation) {
-//
-//         navigator.geolocation.getCurrentPosition(showPosition)
-//     } else {
-//         console.log("Geolocation is not supported by this browser.");
-//     }
-// }
-//
-// function showPosition(position) {
-//     console.log(position.coords);
-//     let lat = position.coords.latitude;
-//     let lon = position.coords.longitude;
-//     let mapObj = {}
-//     mapObj.lng = lon
-//     mapObj.lat = lat
-//     map.flyTo({center: [lon, lat]})
-//     console.log(directions());
-//
-//     // directions(mapObj,)
-//
-//
-//     addMarker(mapObj)
-//     // x.innerHTML = "Latitude: " + position.coords.latitude +
-//     //     "<br>Longitude: " + position.coords.longitude;
-// }
-
-//
-//
-//
-//     /***
-//  * geocode is a method to search for coordinates based on a physical address and return
-//  * @param {string} search is the address to search for the geocoded coordinates
-//  * @param {string} token is your API token for MapBox
-//  * @returns {Promise} a promise containing the latitude and longitude as a two element array
-//  *
-//  * EXAMPLE:
-//  *
-//  *  geocode("San Antonio", API_TOKEN_HERE).then(function(results) {
-//  *      // do something with results
-//  *  })
-//  *
-//  */
-// function geocode(search, token) {
-//     var baseUrl = 'https://api.mapbox.com';
-//     var endPoint = '/geocoding/v5/mapbox.places/';
-//     return fetch(baseUrl + endPoint + encodeURIComponent(search) + '.json' + "?" + 'access_token=' + token)
-//         .then(function(res) {
-//             return res.json();
-//             // to get all the data from the request, comment out the following three lines...
-//         }).then(function(data) {
-//             return data.features[0].center;
-//         });
-// }
-//
-//
-// /***
-//  * reverseGeocode is a method to search for a physical address based on inputted coordinates
-//  * @param {object} coordinates is an object with properties "lat" and "lng" for latitude and longitude
-//  * @param {string} token is your API token for MapBox
-//  * @returns {Promise} a promise containing the string of the closest matching location to the coordinates provided
-//  *
-//  * EXAMPLE:
-//  *
-//  *  reverseGeocode({lat: 32.77, lng: -96.79}, API_TOKEN_HERE).then(function(results) {
-//  *      // do something with results
-//  *  })
-//  *
-//  */
-// function reverseGeocode(coordinates, token) {
-//     var baseUrl = 'https://api.mapbox.com';
-//     var endPoint = '/geocoding/v5/mapbox.places/';
-//     return fetch(baseUrl + endPoint + coordinates.lng + "," + coordinates.lat + '.json' + "?" + 'access_token=' + token)
-//         .then(function(res) {
-//             return res.json();
-//         })
-//         // to get all the data from the request, comment out the following three lines...
-//         .then(function(data) {
-//             return data.features[0].place_name;
-//         });
-// }
-//
-//
-// function directions() {
-//     let token = "pk.eyJ1IjoibWF0dGhld3dpcmFtIiwiYSI6ImNsOWx2YmJwODFtMnEzdXAyMDFvdHRxcHcifQ.20mYzJo1wfnNRyCTEJMtyw";
-//     let address = "https://api.mapbox.com/directions/v5/mapbox/walking/"
-//     let coordinates = "-80.175652,33.018505" + ";" + "-80.175652,33.028505?geometries=geojson&"
-//     let end =      'access_token=' + token
-//
-//     console.log(coordinates);
-//     return fetch(address + coordinates + end).then(function (res) {
-//         return res.json();
-//     })
-//         .then(function (data) {
-//             return console.log(data)
-//         });
-//
-//
-//
-// }
 
 
 
@@ -175,7 +36,7 @@ async function getLocation() {
 }
 
 function showPosition(position) {
-
+    console.log("Hello");
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     let mapArr = []
@@ -185,7 +46,8 @@ function showPosition(position) {
     map.flyTo({center: [lon, lat]})
 
     coords = mapArr;
-    getRoute(coords)
+
+    
 
     // directions(mapObj,)
 
@@ -281,6 +143,8 @@ map.on('load', () => {
 map.on('click', (event) => {
     // const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
 
+    getLocation().then(function (res) {
+
 
 
     const end = {
@@ -324,7 +188,9 @@ map.on('click', (event) => {
             }
         });
     }
+
     getRoute(coords);
+})
 });
 
 
