@@ -43,7 +43,7 @@ function showPosition(position) {
     mapArr.push(lon);
     mapArr.push(lat)
 
-    map.flyTo({center: [lon, lat]})
+    // map.flyTo({center: [lon, lat]})
 
     coords = mapArr;
 
@@ -140,57 +140,111 @@ map.on('load', () => {
     // this is where the code from the next step will go
 });
 
-map.on('click', (event) => {
+// map.on('click', (event) => {
+//     // const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
+//
+//     getLocation().then(function (res) {
+//
+//
+//
+//     const end = {
+//         type: 'FeatureCollection',
+//         features: [
+//             {
+//                 type: 'Feature',
+//                 properties: {},
+//                 geometry: {
+//                     type: 'Point',
+//                     coordinates: coords
+//                 }
+//             }
+//         ]
+//     };
+//     if (map.getLayer('end')) {
+//         map.getSource('end').setData(end);
+//     } else {
+//         map.addLayer({
+//             id: 'end',
+//             type: 'circle',
+//             source: {
+//                 type: 'geojson',
+//                 data: {
+//                     type: 'FeatureCollection',
+//                     features: [
+//                         {
+//                             type: 'Feature',
+//                             properties: {},
+//                             geometry: {
+//                                 type: 'Point',
+//                                 coordinates: coords
+//                             }
+//                         }
+//                     ]
+//                 }
+//             },
+//             paint: {
+//                 'circle-radius': 10,
+//                 'circle-color': '#f30'
+//             }
+//         });
+//     }
+//
+//     getRoute(coords);
+// })
+// });
+setInterval(function () {
+
+
+
     // const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
 
     getLocation().then(function (res) {
 
 
 
-    const end = {
-        type: 'FeatureCollection',
-        features: [
-            {
-                type: 'Feature',
-                properties: {},
-                geometry: {
-                    type: 'Point',
-                    coordinates: coords
+        const end = {
+            type: 'FeatureCollection',
+            features: [
+                {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                        type: 'Point',
+                        coordinates: coords
+                    }
                 }
-            }
-        ]
-    };
-    if (map.getLayer('end')) {
-        map.getSource('end').setData(end);
-    } else {
-        map.addLayer({
-            id: 'end',
-            type: 'circle',
-            source: {
-                type: 'geojson',
-                data: {
-                    type: 'FeatureCollection',
-                    features: [
-                        {
-                            type: 'Feature',
-                            properties: {},
-                            geometry: {
-                                type: 'Point',
-                                coordinates: coords
+            ]
+        };
+        if (map.getLayer('end')) {
+            map.getSource('end').setData(end);
+        } else {
+            map.addLayer({
+                id: 'end',
+                type: 'circle',
+                source: {
+                    type: 'geojson',
+                    data: {
+                        type: 'FeatureCollection',
+                        features: [
+                            {
+                                type: 'Feature',
+                                properties: {},
+                                geometry: {
+                                    type: 'Point',
+                                    coordinates: coords
+                                }
                             }
-                        }
-                    ]
+                        ]
+                    }
+                },
+                paint: {
+                    'circle-radius': 10,
+                    'circle-color': '#f30'
                 }
-            },
-            paint: {
-                'circle-radius': 10,
-                'circle-color': '#f30'
-            }
-        });
-    }
+            });
+        }
 
-    getRoute(coords);
-})
-});
-
+        getRoute(coords);
+    })
+},5000);
 
